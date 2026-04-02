@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const API_BASE_URL = '/api';
+
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://fakestoreapi.com/products');
+      const response = await fetch(`${API_BASE_URL}/products`);
       if (!response.ok) {
         throw new Error('Failed to fetch products');
       }
@@ -36,7 +38,7 @@ export const fetchCategories = createAsyncThunk(
   'products/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('https://fakestoreapi.com/products/categories');
+      const response = await fetch(`${API_BASE_URL}/products/categories`);
       if (!response.ok) throw new Error('Failed to fetch categories');
       return await response.json();
     } catch (error) {
